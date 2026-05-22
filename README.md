@@ -1,66 +1,59 @@
-# OmniTerminal
+# OmniTerminal Monorepo
 
-OmniTerminal es una **AI-Native Operational Access Platform** con enfoque **desktop-first** para operación de infraestructura crítica en entornos enterprise.
+OmniTerminal es una **AI-Native Operational Access Platform** y **Unified Operational Access Layer** con enfoque **desktop-first** para operación de infraestructura crítica enterprise.
 
 ## Propuesta de valor
 
-OmniTerminal unifica, en una sola plataforma:
+OmniTerminal unifica en una sola plataforma:
 
-- Acceso operacional remoto (SSH/RDP/VNC/Túneles).
-- Integraciones API y bases de datos.
-- Operación cloud-native (Kubernetes, contenedores y nubes públicas).
-- Observabilidad contextual durante sesiones.
-- Gobierno de identidad, PAM moderno y auditoría continua.
-- Copiloto operacional con inteligencia de sesión y análisis de riesgo.
+- Acceso operacional remoto (SSH, SFTP, SCP, RDP, VNC, túneles, serial).
+- Integraciones API y datos (REST, GraphQL, gRPC, WebSockets, SOAP, MQTT; DBs principales).
+- Operación cloud-native (Kubernetes, contenedores y proveedores cloud).
+- Gobierno de identidad, PAM moderno, auditoría y licenciamiento enterprise.
+- Copiloto operacional con inteligencia de sesión y análisis contextual.
 
-## Principios del producto
+## Propósito del monorepo
 
-- **Desktop-first**: el cliente de escritorio es el producto principal.
-- **Zero Trust by Design**: identidad, dispositivo y contexto se verifican continuamente.
-- **AI-native**: la IA asiste decisiones operativas con trazabilidad.
-- **Enterprise-ready**: cumplimiento, resiliencia, control y modo air-gapped.
-- **Arquitectura modular**: plataforma extensible y orientada a plugins.
+- Centralizar Desktop, Control Plane y AI Services bajo guardrails comunes.
+- Reducir deriva arquitectónica y evitar sobreingeniería temprana.
+- Acelerar entrega de MVP real con límites claros por dominio.
 
-## Arquitectura objetivo (alto nivel)
+## Arquitectura macro
 
-- **Cliente Desktop**: Tauri + Rust + React + TypeScript + Tailwind + xterm.js.
-- **SaaS Control Plane**: Django/DRF + PostgreSQL.
-- **Servicios complementarios**: FastAPI, Celery, Redis, NATS y WebSockets.
-- **Telemetría**: OpenTelemetry y evolución a almacenamiento analítico.
+- **apps/desktop**: runtime operacional en Tauri/Rust + React/TypeScript.
+- **apps/control-plane**: DjangoBlaze Pro como plano de gobierno SaaS (auth, orgs, suscripciones, licencias, billing, sync metadata, auditoría administrativa).
+- **apps/ai-services**: FastAPI para inteligencia operacional desacoplada y stateless en fase inicial.
 
-## Estructura de documentación
+## Límites no negociables
 
-Toda la documentación está centralizada en `docs/` y organizada por dominio:
+1. **Desktop-first**: ejecución operacional en cliente nativo.
+2. **Cloud-connected, no cloud-dependent**: soporte offline/air-gapped.
+3. **Rust core** para engine de conexión y seguridad local.
+4. **No Electron** como núcleo de producto.
+5. **DjangoBlaze no ejecuta runtime SSH/RDP/túneles**.
 
-- `docs/vision/`
-- `docs/business/`
-- `docs/product/`
-- `docs/architecture/`
-- `docs/security/`
-- `docs/compliance/`
-- `docs/ai/`
-- `docs/integrations/`
-- `docs/licensing/`
-- `docs/deployment/`
-- `docs/engineering/`
-- `docs/operations/`
-- `docs/investor/`
-- `docs/api/`
+## Estructura principal
+
+- `apps/`
+- `packages/`
+- `infrastructure/`
+- `docs/`
+- `tools/`
+- `.github/`
+- `scripts/`
 
 ## Punto de entrada recomendado
 
-Para asistentes de ingeniería (Codex/Claude) y nuevos integrantes, leer primero:
+1. `PROJECT_CONTEXT.md` (router de lectura por tarea).
+2. `ARCHITECTURE_GUARDRAILS.md`.
+3. `SECURITY_GUARDRAILS.md`.
+4. `PRODUCT_GUARDRAILS.md`.
+5. `MONOREPO_MAP.md`.
 
-1. `PROJECT_CONTEXT.md` (mapa de contexto y prioridades de lectura).
-2. `docs/vision/vision-document.md`.
-3. `docs/product/product-requirements-document.md`.
-4. `docs/architecture/system-architecture.md`.
-5. `docs/security/security-architecture.md`.
+## Roadmap de inicialización
 
-## Estado actual
-
-El repositorio contiene una base documental enterprise en español para alinear estrategia, producto, arquitectura, seguridad, compliance y ejecución.
-
-## Licenciamiento y operación offline
-
-La plataforma está diseñada para modelos enterprise con validación periódica de licencias, soporte offline y operación en entornos air-gapped.
+1. Definir contratos compartidos en `packages/contracts`.
+2. Inicializar Desktop MVP (SSH, SFTP, tabs, workspaces, vault local, secure settings).
+3. Integrar y extender DjangoBlaze en `apps/control-plane` sin romper convenciones base.
+4. Publicar AI MVP (command explanation + chat operacional básico).
+5. Endurecer flujos de licensing offline/air-gapped y device trust.
