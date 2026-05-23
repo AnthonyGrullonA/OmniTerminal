@@ -1,14 +1,32 @@
-# Monorepo Map
+# MONOREPO_MAP.md
 
-## Topología
-- `apps/desktop`: cliente principal y runtime operacional.
-- `apps/control-plane`: DjangoBlaze extendido como SaaS de gobierno.
-- `apps/ai-services`: capa AI desacoplada.
-- `packages/*`: contratos, SDKs, tipos y capacidades compartidas.
-- `infrastructure/*`: assets de plataforma y despliegue.
-- `docs/*`: documentación estratégica, técnica y ADRs.
+## Árbol oficial
+- `apps/desktop`
+- `apps/control-plane`
+- `apps/ai-services`
+- `packages/sdk`
+- `packages/contracts`
+- `packages/shared-types`
+- `packages/ui`
+- `packages/security`
+- `packages/observability`
+- `packages/protocols`
+- `packages/licensing`
+- `packages/plugins`
+- `infrastructure/docker`
+- `infrastructure/terraform`
+- `infrastructure/kubernetes`
+- `infrastructure/ansible`
+- `infrastructure/monitoring`
+- `infrastructure/postgres`
+- `infrastructure/redis`
+- `infrastructure/scripts`
+- `docs`
+- `tools`
+- `scripts`
+- `.github`
 
-## Flujos de relación
-- Desktop consume contratos/tipos compartidos y sincroniza metadata con control plane.
-- Control plane emite políticas/licencias y expone APIs para desktop/ai.
-- AI services consumen metadata autorizada y devuelven recomendaciones contextualizadas.
+## Contratos de relación
+- Desktop consume `packages/*` y sincroniza con control-plane.
+- Control-plane emite políticas/licencias y metadatos.
+- AI consume contexto autorizado para análisis y recomendaciones.

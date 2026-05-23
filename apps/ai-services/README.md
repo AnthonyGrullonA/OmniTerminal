@@ -1,20 +1,18 @@
-# Ai Services
+# AI Services
 
-Servicios AI desacoplados para operational intelligence.
+## AI architecture
+FastAPI desacoplado con endpoints para chat operacional, explicación de comandos y análisis contextual.
 
-## Responsabilidades
-- Explicación de comandos y asistente operacional.
-- Correlación contextual básica de sesiones (sin acciones autónomas).
+## Copilots
+- Copiloto de comando (explicación y riesgos).
+- Copiloto de troubleshooting inicial.
+- Copiloto de runbook suggestion (fase posterior).
 
-## Límites
-- Stateless en MVP; sin almacenar secretos de operación.
-- No reemplazar controles de seguridad/autoridad humana.
+## Operational intelligence
+Correlación de contexto autorizado (comandos, metadata de sesión, políticas) para recomendaciones accionables.
 
-## Stack
-FastAPI, Python, OpenRouter, Claude, GPT, Ollama.
+## Prompts
+Prompts versionados, con guardrails de seguridad y políticas de no-ejecución autónoma.
 
-## Relación
-Consume contexto autorizado del control plane y del desktop para devolver recomendaciones.
-
-## Roadmap
-Chat básico → sugerencias de remediación → session intelligence avanzada.
+## Analysis pipelines
+Pipelines stateless en MVP, con trazabilidad de inputs/outputs y registro para auditoría.

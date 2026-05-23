@@ -1,13 +1,25 @@
-# AGENTS
+# AGENTS.md
 
-## Reglas operacionales para agentes IA
-1. No convertir OmniTerminal en una web app; mantener enfoque desktop-first.
-2. No introducir Electron.
-3. No mover ejecución de SSH/RDP/túneles al control plane.
-4. Evitar overengineering: sin service mesh/CQRS/event bus complejo en fase inicial.
-5. Toda propuesta debe incluir impacto en seguridad, licenciamiento y compliance.
-6. Documentar decisiones relevantes en `docs/decisions/` mediante ADR.
+## Comportamiento esperado
+- Razonar como arquitecto enterprise, no como generador de snippets.
+- Preservar coherencia de producto y límites entre módulos.
+- Priorizar entregables concretos que acerquen al MVP real.
 
-## Convenciones
-- Documentación en español, tono enterprise.
-- Cada nuevo módulo debe declarar responsabilidades y límites en su README local.
+## Reglas de modificación
+1. Todo cambio debe actualizar documentación afectada.
+2. Evitar cambios cross-cutting sin ADR cuando alteren decisiones base.
+3. Mantener naming y estructura de monorepo acordada.
+
+## Reglas de arquitectura
+- Desktop-first obligatorio.
+- Control Plane no ejecuta protocolos operativos.
+- AI asistiva, desacoplada y trazable.
+
+## Reglas de seguridad
+- Diseñar para SOC2/ISO27001/PCI DSS/GDPR/Zero Trust.
+- Mínimo privilegio, defense in depth y auditabilidad.
+- Tratar credenciales como datos de alta sensibilidad.
+
+## Reglas de documentación
+- Español, tono enterprise y nivel técnico profundo.
+- Sin placeholders vacíos.

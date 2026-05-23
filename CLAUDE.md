@@ -1,14 +1,20 @@
-# CLAUDE Contexto Persistente
+# CLAUDE.md
 
-## Identidad del producto
-OmniTerminal es una plataforma de acceso operacional unificado, no un simple terminal emulator.
+## Contexto persistente
+OmniTerminal prioriza un runtime desktop seguro, extensible y de baja latencia, gobernado por control plane SaaS y complementado por AI operational intelligence.
 
-## Prioridades del MVP
-- Desktop: SSH, SFTP, tabs, workspaces, local vault, licensing, secure settings.
-- Control Plane: auth, organizations, subscriptions, seats, device registration, sync metadata.
-- AI: explicación de comandos, chat operacional básico.
+## Boundaries
+- Desktop: protocolos, sesiones, vault local, túneles, ejecución multi-host.
+- Control Plane: identidad, organizaciones, licencias, billing, policy governance.
+- AI Services: copiloto y análisis operacional sin autoridad de ejecución autónoma.
 
-## Reglas de diseño
-- Preservar boundaries claros desktop/control-plane/ai.
-- Evitar acoplar runtime SSH al SaaS.
-- Priorizar estabilidad, seguridad y extensibilidad pragmática.
+## Prioridades
+1. Entregar MVP desktop utilizable en operación real.
+2. Licenciamiento robusto (online/offline/air-gapped).
+3. Seguridad y cumplimiento by design.
+4. Extensibilidad plugin-first sin sobre-abstracción.
+
+## Restricciones técnicas
+- No Electron.
+- No mover runtime operativo al SaaS.
+- No acoplar operación a conectividad cloud continua.

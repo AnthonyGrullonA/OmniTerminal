@@ -1,59 +1,57 @@
-# OmniTerminal Monorepo
+# OmniTerminal
 
-OmniTerminal es una **AI-Native Operational Access Platform** y **Unified Operational Access Layer** con enfoque **desktop-first** para operación de infraestructura crítica enterprise.
+OmniTerminal es una **AI-Native Operational Infrastructure Platform** orientada a operación enterprise crítica. Su tesis es unificar acceso remoto, gobierno de identidad, seguridad, observabilidad contextual y asistencia AI en una sola experiencia **desktop-native**.
 
-## Propuesta de valor
+## Visión enterprise
+- Convertirse en la capa unificada de acceso operacional para bancos, telcos, fintechs, healthcare, gobierno y MSSPs.
+- Reducir fragmentación entre herramientas de terminal, APIs, Kubernetes, bases de datos, VPN y PAM.
+- Proveer un modelo Zero Trust operativo con trazabilidad auditable y control de riesgo.
 
-OmniTerminal unifica en una sola plataforma:
+## Arquitectura de referencia
+- **Desktop App (principal):** runtime operativo, protocol engine, vault local, terminal, túneles y UX de operación.
+- **Control Plane SaaS (DjangoBlaze):** identidad, organizaciones, suscripciones, billing, licencias, governance, sync metadata y administración enterprise.
+- **AI Services (FastAPI):** copilotos operacionales, explicación de comandos y análisis contextual desacoplado.
 
-- Acceso operacional remoto (SSH, SFTP, SCP, RDP, VNC, túneles, serial).
-- Integraciones API y datos (REST, GraphQL, gRPC, WebSockets, SOAP, MQTT; DBs principales).
-- Operación cloud-native (Kubernetes, contenedores y proveedores cloud).
-- Gobierno de identidad, PAM moderno, auditoría y licenciamiento enterprise.
-- Copiloto operacional con inteligencia de sesión y análisis contextual.
+## Stack oficial
+- Desktop: Tauri, Rust, React, TypeScript, TailwindCSS, xterm.js, Zustand, TanStack Query, SQLite cifrado.
+- Control Plane: DjangoBlaze Pro, Django 6, DRF, PostgreSQL, Redis, Celery, WebSockets.
+- AI: FastAPI, Python, OpenRouter, Claude, GPT, Ollama.
 
-## Propósito del monorepo
+## Diferenciadores
+1. Unified workspace: SSH/RDP/APIs/DB/K8s/VPN en una sola superficie.
+2. AI operational intelligence: sugerencias contextualizadas y accionables.
+3. PAM readiness: RBAC/SSO/SAML/OIDC/SCIM/MFA/WebAuthn/JIT/policy-as-code.
+4. Cloud-connected sin cloud dependency operacional.
 
-- Centralizar Desktop, Control Plane y AI Services bajo guardrails comunes.
-- Reducir deriva arquitectónica y evitar sobreingeniería temprana.
-- Acelerar entrega de MVP real con límites claros por dominio.
+## MVP real
+### Desktop MVP
+SSH, SFTP, tabs, workspaces, local encrypted vault, secure settings, tunnel manager, remote file explorer, snippets/macros, multi-execution, sync básico y licensing.
 
-## Arquitectura macro
+### SaaS MVP
+Auth, organizations, teams, subscriptions, billing, licensing, device registration, seat management y sync metadata.
 
-- **apps/desktop**: runtime operacional en Tauri/Rust + React/TypeScript.
-- **apps/control-plane**: DjangoBlaze Pro como plano de gobierno SaaS (auth, orgs, suscripciones, licencias, billing, sync metadata, auditoría administrativa).
-- **apps/ai-services**: FastAPI para inteligencia operacional desacoplada y stateless en fase inicial.
+### AI MVP
+AI chat, command explanation y operational assistant básico.
 
-## Límites no negociables
+## Estrategia cloud y desktop
+- **Desktop-first:** toda ejecución crítica de sesión permanece local para latencia y control.
+- **Cloud-connected:** control plane gobierna identidad, licencias y políticas sin secuestrar runtime.
+- **Offline-capable:** activación/validación de licencias con escenarios offline y air-gapped.
 
-1. **Desktop-first**: ejecución operacional en cliente nativo.
-2. **Cloud-connected, no cloud-dependent**: soporte offline/air-gapped.
-3. **Rust core** para engine de conexión y seguridad local.
-4. **No Electron** como núcleo de producto.
-5. **DjangoBlaze no ejecuta runtime SSH/RDP/túneles**.
+## Estrategia AI
+- AI asiste decisiones; no reemplaza controles de autorización.
+- Guardrails de seguridad, auditabilidad y minimización de datos por diseño.
 
-## Estructura principal
+## Estrategia PAM
+- Preparación desde fase fundacional para SOC2/ISO27001/PCI DSS/GDPR.
+- Diseño por políticas, aprobación contextual y credenciales efímeras.
 
-- `apps/`
-- `packages/`
-- `infrastructure/`
-- `docs/`
-- `tools/`
-- `.github/`
-- `scripts/`
+## Estructura monorepo
+Ver `MONOREPO_MAP.md`.
 
-## Punto de entrada recomendado
-
-1. `PROJECT_CONTEXT.md` (router de lectura por tarea).
-2. `ARCHITECTURE_GUARDRAILS.md`.
-3. `SECURITY_GUARDRAILS.md`.
-4. `PRODUCT_GUARDRAILS.md`.
-5. `MONOREPO_MAP.md`.
-
-## Roadmap de inicialización
-
-1. Definir contratos compartidos en `packages/contracts`.
-2. Inicializar Desktop MVP (SSH, SFTP, tabs, workspaces, vault local, secure settings).
-3. Integrar y extender DjangoBlaze en `apps/control-plane` sin romper convenciones base.
-4. Publicar AI MVP (command explanation + chat operacional básico).
-5. Endurecer flujos de licensing offline/air-gapped y device trust.
+## Quick Start documental
+1. `PROJECT_CONTEXT.md`
+2. `ARCHITECTURE_GUARDRAILS.md`
+3. `SECURITY_GUARDRAILS.md`
+4. `BUILD_STRATEGY.md`
+5. `docs/decisions/`

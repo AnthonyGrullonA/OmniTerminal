@@ -1,21 +1,16 @@
 # Control Plane
 
-SaaS Control Plane basado en DjangoBlaze Pro.
+## DjangoBlaze integration
+DjangoBlaze Pro se usa como base y se extiende por dominios: organizations, subscriptions, licensing, governance, audit metadata y administration.
 
-## Responsabilidades
-- Auth, organizaciones, equipos y RBAC.
-- Licencias, suscripciones, seats y device registration.
-- Sync metadata, gobierno y auditoría administrativa.
+## Capacidades
+- Auth, SSO/MFA base y gestión de organizaciones/equipos.
+- Billing, subscriptions, seats y lifecycle de licencias.
+- Device registration y postura básica de confianza.
+- Sync metadata para desktop.
 
 ## Límites
-- No ejecutar motores de SSH/RDP ni runtime de sesión.
-- No renderizar terminal ni manejar túneles operativos.
+No ejecuta SSH/RDP/túneles ni rendering de terminal. No centraliza secretos operativos de sesiones activas.
 
-## Stack
-Django 6, DRF, PostgreSQL, Redis, Celery, WebSockets.
-
-## Integración DjangoBlaze
-Se adopta DjangoBlaze como base y se extiende por apps de dominio (licensing, governance, device trust) manteniendo convenciones del framework.
-
-## Roadmap
-MVP tenancy/licensing → políticas avanzadas → portal enterprise de cumplimiento.
+## Estrategia de evolución
+Extensión incremental, sin romper convenciones DjangoBlaze, con apps de dominio bien delimitadas.
